@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mast.shop.dao.customer.CustomerDao">
+	<!-- 客户登录 -->
+	<select id="login" resultType="Customer" parameterType="String">
+		select * from customer
+		where nickname = #{nickName}
+	</select>
+	<!-- 客户注册 -->
+	<insert id="save" parameterType="Customer">
+		insert into customer (nickname,password,phone,registertime,wallet)
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="nickName != null">
+				#{nickName,jdbcType=VARCHAR},
+			</if>
+			<if test="passWord != null">
+				#{passWord,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				#{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="registerTime != null">
+				#{registerTime,jdbcType=VARCHAR},
+			</if>
+			<if test="wallet != null">
+				5000
+			</if>
+		</trim>
+	</insert>
+	<update id = "updateWallet" parameterType="Customer">
+		UPDATE customer 
+		<set>
+			 wallet= #{wallet}
+		</set>
+		 	WHERE customerid=
+			(SELECT customerid FROM orderlist  WHERE orderlist.ordercode=#{orderCode})
+	</update>	
+	<!-- 客户修改 -->
+	<update id="update" parameterType="Customer">
+		update customer
+		<trim prefix="set" suffixOverrides="," suffix="where customerid=#{customerId}">
+			<if test="nickName != null">nickname=#{nickName},</if>
+			<if test="passWord != null">password=#{passWord},</if>
+			<if test="phone != null">phone=#{phone},</if>
+			<if test="score != null">score=#{score},</if>
+			<if test="registerTime != null">registertime=#{registerTime},</if>
+			<if test="name != null">name=#{name},</if>
+			<if test="ID != null">ID=#{ID}</if>
+		</trim>
+	</update>
+	<!-- 条件查找客户 -->
+	<select id="findCusAll" resultType="Customer" parameterType="Customer">
+		select * from customer
+		<trim prefix="where" prefixOverrides="and | or">
+			<if test="customerId !=null">
+				and customerid =#{customerId}
+			</if>
+			<if test="nickName !=null and nickName !=''">
+				and nickname = #{nickName}
+			</if>
+			<if test="passWord !=null and passWord !=''">
+				and password = #{passWord}
+			</if>
+			<if test="phone !=null and phone !=''">
+				and phone = #{phone}
+			</if>
+			<if test="name !=null and name !=''">
+				and name = #{name}
+			</if>
+			<if test="ID !=null">
+				and ID = #{ID}
+			</if>
+			<if test="score !=null">
+				and score = #{score}
+			</if>
+		</trim>
+	</select>
+	
+	<select id="customers" resultType="Customer">
+		select customerid,nickname,password,score,registertime,phone,ID,name from customer
+		<trim prefix="where" prefixOverrides="and | or">
+		<if test="nickName !=null">
+			and	nickname like concat('%',#{nickName},'%')
+		</if> 
+		<if test="phone !=null">
+			and	phone=#{phone}
+		</if>
+		<if test="name !=null">
+			and	name=#{name}
+		</if>
+		</trim>
+		limit #{pageIndex},#{pageSize}
+	</select>
+	<select id = "findByNickName" resultType = "Customer" >
+		select * from customer where nickname=#{nickName}
+	</select>
+	
+	<delete id="delete" parameterType="Customer">
+		delete from customer where
+		customerid=#{customerId}
+	</delete>
+	<select id="find" resultType="Customer">
+		select * from customer where
+		customerid=#{customerId}
+	</select>
+	<select id="count" resultType="int">
+		select count(*) from customer
+	</select>
+	
+	<!-- 客户收货地址查找 -->
+	<select id="findAddressByCustomerId" resultType="Address">
+		select * from address 
+		<trim prefix="where" prefixOverrides="and | or">
+			<if test="customerId !=null and customerId != ''">
+				and customerid = #{customerId}
+			</if>
+		</trim>
+	</select>
+	<!-- 根据addressId查询收货地址信息 -->
+	<select id="findAddressByAddressId" resultType="Address">
+		select * from address where addressid=#{addressId}
+	</select>
+	<!-- 添加收货地址 -->
+	<insert id="saveAddress" parameterType="Address">
+		insert into address(addressname,addresssignname,addresssignphone,addressdefault,customerid,addressdate)
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="addressName !=null and addressName !=''">
+				#{addressName,jdbcType=VARCHAR},
+			</if>
+			<if test="addressSignName !=null and addressSignName !=''">
+				#{addressSignName,jdbcType=VARCHAR},
+			</if>
+			<if test="addressSignPhone !=null and addressSignPhone !=''">
+				#{addressSignPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="addressDefault !=null and addressDefault !=''">
+				#{addressDefault,jdbcType=CHAR},
+			</if>
+			<if test="customerId !=null and customerId !=''">
+				#{customerId,jdbcType=INTEGER},
+			</if>
+			<if test="addressDate !=null and addressDate !=''">
+				#{addressDate,jdbcType=VARCHAR}
+			</if>
+		</trim>
+	</insert>
+	<!-- 客户收货地址修改 -->
+	<update id="updateAddressByAddressId" parameterType="Address">
+		update address 
+		<trim prefix="set" suffixOverrides="," suffix="where addressid=#{addressId}">
+			<if test="addressName !=null and addressName !=''">addressname=#{addressName},</if>
+			<if test="addressSignName !=null and addressName !=''">addresssignname=#{addressSignName},</if>
+			<if test="addressSignPhone !=null and addressSignPhone !=''">addresssignphone=#{addressSignPhone},</if>
+			<if test="addressDefault !=null and addressDefault !=''">addressdefault=#{addressDefault},</if>
+		</trim>
+	
+	</update>
+	<!-- 取消默认地址 -->
+	<update id="updateDefaultByCustomerId" parameterType="Address">
+		update address set addressdefault='否' where customerid = #{customerId} 
+	</update>
+	
+	<!-- 客户收货地址删除 -->
+	<delete id="deleteAddressByAddressId" parameterType="Integer">
+		delete from address where addressid = #{addressId}
+	</delete>
+	
+</mapper>

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mast.shop.dao.business.ProductDao">
+
+	<select id="findByDate" resultType="Product">
+		SELECT * from  product p where p.productstatus != 3 and p.productstatus != 5 and p.productstatus != 6  order by productstartdatetime desc  limit 8 
+	</select>
+	
+	<select id="findBySail" resultType="Product">
+		SELECT * from  product p where p.productstatus != 3 and p.productstatus != 5 and p.productstatus != 6  order by productsail desc limit 8 
+	</select>
+	
+	<select id="findById" resultType="Product">
+		SELECT * from product p where  productid=#{productId} 
+	</select>
+	<select id="find" resultType="Product">
+		select * from product p where  productname = #{productName}
+	</select>
+	<select id="findByCategroy" resultType="Product">
+		SELECT p.*,
+(SELECT typename FROM dictionarytype d WHERE  d.typecode=p.productoneid) AS categoryLevel1Name,
+(SELECT typename FROM dictionarytype d WHERE  d.typecode=p.producttwoid) AS categoryLevel2Name,
+(SELECT typename FROM dictionarytype d WHERE  d.typecode=p.productthreeid) AS categoryLevel3Name
+			FROM  product p
+		<trim prefix="where" prefixOverrides="and | or">
+			<if test="productName != null and productName != ''">
+				and p.productname like '%${productName}%'
+			</if>
+			<if test="categoryLevel1 != null and categoryLevel1 != '' ">
+				and p.productoneid = #{categoryLevel1}
+			</if>
+			<if test="categoryLevel2 != null and categoryLevel2 != '' ">
+				and p.producttwoid = #{categoryLevel2}
+			</if>
+			<if test="categoryLevel3 != null and categoryLevel3 != '' ">
+				and p.productthreeid = #{categoryLevel3}
+			</if>
+			
+		</trim>
+				 limit #{pageIndex},#{pageSize}
+	</select>
+	
+	<select id="findByCount" resultType="Int">
+		select count(*) as count from product p
+			<trim prefix="where" prefixOverrides="and | or">
+				<if test="productName != null and productName != ''">
+					and p.productname like CONCAT ('%',#{productName},'%')
+				</if>
+				<!-- <if test="status != null">
+					and a.status = #{status}
+				</if> -->
+				<if test="categoryLevel1 != null">
+					and p.productoneid = #{categoryLevel1}
+				</if>
+				<if test="categoryLevel2 != null">
+					and p.producttwoid = #{categoryLevel2}
+				</if>
+				<if test="categoryLevel3 != null">
+					and p.productthreeid = #{categoryLevel3}
+				</if>
+				<!-- <if test="flatformId != null">
+					and a.flatformId = #{flatformId}
+				</if>
+				<if test="devId != null">
+					and a.devId = #{devId}
+				</if> -->
+			</trim>
+	</select>
+	<insert id="save" parameterType="Product">
+		insert into product
+		(productname,productprice,producttitle,productintroduction,productimage,productcount,productweight,productsail,productsize,
+		productoneid,producttwoid,productthreeid,productstatus,productstartdatetime,productenddatetime,businessid,productaddress,sendtypeid,productpageview)
+		 values(#{productName},#{productPrice},#{productTitle},#{productIntroduction},#{productImage},#{productCount},#{productWeight},#{productSail},#{productSize},
+		 #{productOneId},#{productTwoId},#{productThreeId},#{productStatus},#{productStartDateTime},#{productEndDateTime},#{businessId},#{productAddress},#{sendTypeId},#{productPageView})
+	</insert>
+	<update id="update" parameterType="Product">
+		update product
+			<trim prefix="set" suffixOverrides="," suffix="where productid=#{productId}">
+				<if test="productName !=null and productName!=''">
+					 productname=#{productName},
+				</if>
+				<if test="productPrice !=null and productPrice!=''">
+						productprice=#{productPrice},
+				</if>
+				<if test="productTitle !=null and productTitle !=''">
+						producttitle=#{productTitle},
+				</if>
+				<if test="productIntroduction !=null and productIntroduction !=''">
+						productintroduction=#{productIntroduction},
+				</if>
+				<if test="productImage !=null and productImage !=''">
+						productimage=#{productImage},
+				</if>
+				<if test="productCount !=null and productCount !=''">
+						productcount=#{productCount},
+				</if>
+				<if test="productWeight !=null and productWeight !=''">
+						productweight=#{productWeight},
+				</if>
+				<if test="productSail !=null and productSail !=''">
+						productsail=#{productSail},
+				</if>
+				
+				<if test="productSize !=null and productSize !=''">
+						productsize=#{productSize},
+				</if>
+				<if test="productOneId !=null and productOneId !=''">
+						productoneid=#{productOneId},
+				</if>
+				<if test="productTwoId !=null and productTwoId !=''">
+						producttwoid=#{productTwoId},
+				</if>
+				<if test="productThreeId !=null and productThreeId !=''">
+					productthreeid=#{productThreeId},
+				</if>
+				<if test="productStatus !=null and productStatus !=''">
+						productstatus=#{productStatus},
+				</if>
+				<if test="productStartDateTime !=null and productStartDateTime !=''">
+						productstartdatetime=#{productStartDateTime},
+				</if>
+				<if test="productEndDateTime !=null and productEndDateTime !=''">
+						productenddatetime=#{productEndDateTime},
+				</if>
+				<if test="businessId !=null and businessId !=''">
+						businessid=#{businessId},
+				</if>
+				<if test="productAddress !=null and productAddress!=''">
+						productaddress=#{productAddress},
+				</if>
+				<if test="sendTypeId !=null and sendTypeId !=''">
+						sendtypeid=#{sendTypeId},
+				</if>
+				<if test="productPageView !=null and productPageView !=''">
+						productpageview=#{productPageView},
+				</if>
+			</trim>
+			
+	</update>
+	
+		<update id="updateStatus" parameterType="Product">
+			update product set productstatus=#{productStatus}
+			where productid=#{productId}
+		</update>
+		
+		<update id="updateCount" parameterType="Product">
+			update product 
+			<set>
+				<if test="productCount!=null and productCount!=''">
+					 productcount=#{productCount}
+				</if>
+				<if test="productSail!=null and productSail!=''">
+					 productsail=#{productSail}
+				</if>
+			</set>
+			where productid=#{productId}
+		</update>
+		
+		<delete id = "delete" parameterType = "Integer">
+			delete from product where productid=#{productId}
+		</delete>
+</mapper>

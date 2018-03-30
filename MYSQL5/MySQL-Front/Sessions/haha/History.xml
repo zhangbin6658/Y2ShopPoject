@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<history version="1.0"><sql type="statement"><database>test</database><datetime>41037.3780099769</datetime><fields>0</fields><records>0</records><rows_affected>0</rows_affected><sql>ALTER TABLE users
+ADD CONSTRAINT fk_user_role
+FOREIGN KEY (rid) REFERENCES role(id)</sql><info>Records: 0  Duplicates: 0  Warnings: 0</info><execution_time>1.26157829072326E-6</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.3850491898</datetime><fields>0</fields><records>0</records><rows_affected>0</rows_affected><sql>CREATE TABLE role(
+ id  int PRIMARY key, 
+ NAME varchar(20)
+)</sql><execution_time>3.70368070434779E-7</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.3855248032</datetime><fields>0</fields><records>0</records><rows_affected>0</rows_affected><sql>CREATE TABLE uses(
+  id int PRIMARY key,  
+  NAME varchar(20),  
+  rid int REFERENCES role(id)
+)</sql><execution_time>3.58799297828227E-7</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.3868672222</datetime><fields>0</fields><records>0</records><rows_affected>0</rows_affected><sql>ALTER TABLE uses
+ADD CONSTRAINT fk_user_role
+FOREIGN KEY (rid) REFERENCES role(id)</sql><info>Records: 0  Duplicates: 0  Warnings: 0</info><execution_time>7.29167368263006E-7</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.3868733681</datetime><fields>0</fields><records>0</records><rows_affected>0</rows_affected><sql>ALTER TABLE uses
+ADD CONSTRAINT fk_user_role
+FOREIGN KEY (rid) REFERENCES role(id)</sql><info>Records: 0  Duplicates: 0  Warnings: 0</info><execution_time>3.58799297828227E-7</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.3868789699</datetime><fields>0</fields><records>0</records><rows_affected>0</rows_affected><sql>ALTER TABLE uses
+ADD CONSTRAINT fk_user_role
+FOREIGN KEY (rid) REFERENCES role(id)</sql><info>Records: 0  Duplicates: 0  Warnings: 0</info><execution_time>3.58792021870613E-7</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.3868811458</datetime><fields>0</fields><records>0</records><rows_affected>0</rows_affected><sql>ALTER TABLE uses
+ADD CONSTRAINT fk_user_role
+FOREIGN KEY (rid) REFERENCES role(id)</sql><info>Records: 0  Duplicates: 0  Warnings: 0</info><execution_time>3.58792021870613E-7</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.3868829514</datetime><fields>0</fields><records>0</records><rows_affected>0</rows_affected><sql>ALTER TABLE uses
+ADD CONSTRAINT fk_user_role
+FOREIGN KEY (rid) REFERENCES role(id)</sql><info>Records: 0  Duplicates: 0  Warnings: 0</info><execution_time>3.58799297828227E-7</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.3868847569</datetime><fields>0</fields><records>0</records><rows_affected>0</rows_affected><sql>ALTER TABLE uses
+ADD CONSTRAINT fk_user_role
+FOREIGN KEY (rid) REFERENCES role(id)</sql><info>Records: 0  Duplicates: 0  Warnings: 0</info><execution_time>3.58799297828227E-7</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.3868863889</datetime><fields>0</fields><records>0</records><rows_affected>0</rows_affected><sql>ALTER TABLE uses
+ADD CONSTRAINT fk_user_role
+FOREIGN KEY (rid) REFERENCES role(id)</sql><info>Records: 0  Duplicates: 0  Warnings: 0</info><execution_time>1.85180397238582E-7</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.3886040509</datetime><fields>0</fields><records>0</records><rows_affected>1</rows_affected><sql>INSERT INTO role VALUES (1,'admin')</sql><execution_time>0</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.3888038889</datetime><fields>0</fields><records>0</records><rows_affected>1</rows_affected><sql>INSERT INTO uses VALUES(1,'admin',1)</sql><execution_time>0</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.3888975694</datetime><fields>0</fields><records>0</records><rows_affected>1</rows_affected><sql>DELETE FROM role</sql><execution_time>1.85180397238582E-7</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.3889111343</datetime><fields>0</fields><records>0</records><rows_affected>0</rows_affected><sql>DELETE FROM role</sql><execution_time>0</execution_time></sql><sql type="query"><database>test</database><datetime>41037.3890039005</datetime><fields>2</fields><records>0</records><sql>SELECT * FROM role</sql><execution_time>0</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.3896357755</datetime><fields>0</fields><records>0</records><rows_affected>0</rows_affected><sql>CREATE TABLE role(
+ id  int PRIMARY key, 
+ NAME varchar(20)
+)</sql><execution_time>7.1759131969884E-7</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.3896600116</datetime><fields>0</fields><records>0</records><rows_affected>0</rows_affected><sql>CREATE TABLE uses(
+  id int PRIMARY key,  
+  NAME varchar(20),  
+  rid int REFERENCES role(id)
+)</sql><execution_time>7.29167368263006E-7</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.3896959954</datetime><fields>0</fields><records>0</records><rows_affected>0</rows_affected><sql>ALTER TABLE uses
+ADD CONSTRAINT fk_user_role
+FOREIGN KEY (rid) REFERENCES role(id)</sql><info>Records: 0  Duplicates: 0  Warnings: 0</info><execution_time>1.44676596391946E-6</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.3897278241</datetime><fields>0</fields><records>0</records><rows_affected>1</rows_affected><sql>INSERT INTO role VALUES (1,'admin')</sql><execution_time>3.58792021870613E-7</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.3897715972</datetime><fields>0</fields><records>0</records><rows_affected>1</rows_affected><sql>INSERT INTO uses VALUES(1,'admin',1)</sql><execution_time>1.85187673196197E-7</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.3926150116</datetime><fields>0</fields><records>0</records><rows_affected>0</rows_affected><sql>CREATE TABLE role(
+ id  int PRIMARY key, 
+ NAME varchar(20)
+)</sql><execution_time>5.32410922460258E-7</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.3926394329</datetime><fields>0</fields><records>0</records><rows_affected>0</rows_affected><sql>CREATE TABLE uses(
+  id int PRIMARY key,  
+  NAME varchar(20),  
+  rid int REFERENCES role(id)
+)</sql><execution_time>3.58792021870613E-7</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.3926788542</datetime><fields>0</fields><records>0</records><rows_affected>0</rows_affected><sql>ALTER TABLE uses
+ADD CONSTRAINT fk_user_role
+FOREIGN KEY (rid) REFERENCES role(id)</sql><info>Records: 0  Duplicates: 0  Warnings: 0</info><execution_time>3.58799297828227E-7</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.3927063426</datetime><fields>0</fields><records>0</records><rows_affected>1</rows_affected><sql>INSERT INTO role VALUES (1,'admin')</sql><execution_time>0</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.3927314815</datetime><fields>0</fields><records>0</records><rows_affected>1</rows_affected><sql>INSERT INTO uses VALUES(1,'admin',1)</sql><execution_time>0</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.3927560764</datetime><fields>0</fields><records>0</records><rows_affected>1</rows_affected><sql>DELETE FROM role</sql><execution_time>0</execution_time></sql><sql type="query"><database>test</database><datetime>41037.3927871759</datetime><fields>2</fields><records>0</records><sql>SELECT * FROM role</sql><execution_time>0</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.3986937616</datetime><fields>0</fields><records>0</records><rows_affected>1</rows_affected><sql>INSERT INTO role VALUES (1,'admin')</sql><execution_time>0</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.3999526157</datetime><fields>0</fields><records>0</records><rows_affected>0</rows_affected><sql>CREATE TABLE role(
+ id  int PRIMARY key, 
+ NAME varchar(20)
+)</sql><execution_time>5.4397969506681E-7</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.3999723264</datetime><fields>0</fields><records>0</records><rows_affected>0</rows_affected><sql>CREATE TABLE uses(
+  id int PRIMARY key,  
+  NAME varchar(20),  
+  rid int REFERENCES role(id)
+)</sql><execution_time>3.58799297828227E-7</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.4000131944</datetime><fields>0</fields><records>0</records><rows_affected>0</rows_affected><sql>ALTER TABLE uses
+ADD CONSTRAINT fk_user_role
+FOREIGN KEY (rid) REFERENCES role(id)</sql><info>Records: 0  Duplicates: 0  Warnings: 0</info><execution_time>1.26157101476565E-6</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.4000421296</datetime><fields>0</fields><records>0</records><rows_affected>1</rows_affected><sql>INSERT INTO role VALUES (1,'admin')</sql><execution_time>1.73611624632031E-7</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.4000862616</datetime><fields>0</fields><records>0</records><rows_affected>1</rows_affected><sql>INSERT INTO uses VALUES(1,'admin',1)</sql><execution_time>3.58792021870613E-7</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.4059830787</datetime><fields>0</fields><records>0</records><rows_affected>0</rows_affected><sql>CREATE TABLE `uses` (
+  `id` int(11) NOT NULL,
+  `NAME` varchar(20) DEFAULT NULL,
+  `rid` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_user_role` (`rid`),
+  CONSTRAINT `fk_user_role` FOREIGN KEY (`rid`) REFERENCES `role` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;</sql><execution_time>1.85180397238582E-7</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.414225081</datetime><fields>0</fields><records>0</records><rows_affected>0</rows_affected><sql>CREATE TABLE `uses` (
+  `id` int(11) NOT NULL,
+  `NAME` varchar(20) DEFAULT NULL,
+  `rid` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_user_role` (`rid`),
+  CONSTRAINT `fk_user_role` FOREIGN KEY (`rid`) REFERENCES `role` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;</sql><execution_time>1.73611624632031E-7</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.4169202083</datetime><fields>0</fields><records>0</records><rows_affected>0</rows_affected><sql>CREATE TABLE uses(
+  id int PRIMARY key,  
+  NAME varchar(20),  
+  rid int REFERENCES role(id)
+)</sql><execution_time>5.4397969506681E-7</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.4193802546</datetime><fields>0</fields><records>0</records><rows_affected>0</rows_affected><sql>CREATE TABLE role(
+ id  int PRIMARY key, 
+ NAME varchar(20)
+)</sql><execution_time>5.4397969506681E-7</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.4194057523</datetime><fields>0</fields><records>0</records><rows_affected>0</rows_affected><sql>CREATE TABLE uses(
+  id int PRIMARY key,  
+  NAME varchar(20),  
+  rid int REFERENCES role(id)
+)</sql><execution_time>5.4397969506681E-7</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.4194292593</datetime><fields>0</fields><records>0</records><rows_affected>0</rows_affected><sql>ALTER TABLE uses
+ADD CONSTRAINT fk_user_role
+FOREIGN KEY (rid) REFERENCES role(id)</sql><info>Records: 0  Duplicates: 0  Warnings: 0</info><execution_time>1.44675868796185E-6</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.4194525926</datetime><fields>0</fields><records>0</records><rows_affected>1</rows_affected><sql>INSERT INTO role VALUES (1,'admin')</sql><execution_time>0</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.4194739236</datetime><fields>0</fields><records>0</records><rows_affected>1</rows_affected><sql>INSERT INTO uses VALUES(1,'admin',1)</sql><execution_time>1.73611624632031E-7</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.4202434143</datetime><fields>0</fields><records>0</records><rows_affected>0</rows_affected><sql>CREATE TABLE role(
+ id  int PRIMARY key, 
+ NAME varchar(20)
+)</sql><execution_time>3.58799297828227E-7</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.4202653009</datetime><fields>0</fields><records>0</records><rows_affected>0</rows_affected><sql>CREATE TABLE uses(
+  id int PRIMARY key,  
+  NAME varchar(20),  
+  rid int REFERENCES role(id)
+)</sql><execution_time>3.70368070434779E-7</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.4202880787</datetime><fields>0</fields><records>0</records><rows_affected>0</rows_affected><sql>ALTER TABLE uses
+ADD CONSTRAINT fk_user_role
+FOREIGN KEY (rid) REFERENCES role(id)</sql><info>Records: 0  Duplicates: 0  Warnings: 0</info><execution_time>3.58792021870613E-7</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.4203094213</datetime><fields>0</fields><records>0</records><rows_affected>1</rows_affected><sql>INSERT INTO role VALUES (1,'admin')</sql><execution_time>0</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.4203278704</datetime><fields>0</fields><records>0</records><rows_affected>1</rows_affected><sql>INSERT INTO uses VALUES(1,'admin',1)</sql><execution_time>0</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.4203457755</datetime><fields>0</fields><records>0</records><rows_affected>1</rows_affected><sql>DELETE FROM role</sql><execution_time>0</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.4203719907</datetime><fields>0</fields><records>0</records><rows_affected>0</rows_affected><sql>DELETE FROM role</sql><execution_time>0</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.421463044</datetime><fields>0</fields><records>0</records><rows_affected>0</rows_affected><sql>CREATE TABLE role(
+ id  int PRIMARY key, 
+ NAME varchar(20)
+)</sql><execution_time>3.70368070434779E-7</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.4214919792</datetime><fields>0</fields><records>0</records><rows_affected>0</rows_affected><sql>CREATE TABLE uses(
+  id int PRIMARY key,  
+  NAME varchar(20),  
+  rid int REFERENCES role(id)
+)</sql><execution_time>0</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.4215151273</datetime><fields>0</fields><records>0</records><rows_affected>0</rows_affected><sql>ALTER TABLE uses
+ADD CONSTRAINT fk_user_role
+FOREIGN KEY (rid) REFERENCES role(id)</sql><info>Records: 0  Duplicates: 0  Warnings: 0</info><execution_time>5.43986971024424E-7</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.421532662</datetime><fields>0</fields><records>0</records><rows_affected>1</rows_affected><sql>INSERT INTO role VALUES (1,'admin')</sql><execution_time>0</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.4215525579</datetime><fields>0</fields><records>0</records><rows_affected>1</rows_affected><sql>INSERT INTO uses VALUES(1,'admin',1)</sql><execution_time>0</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.4215729977</datetime><fields>0</fields><records>0</records><rows_affected>1</rows_affected><sql>DELETE FROM role</sql><execution_time>0</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.4247931134</datetime><fields>0</fields><records>0</records><rows_affected>0</rows_affected><sql>CREATE TABLE role(
+ id  int PRIMARY key, 
+ NAME varchar(20)
+)</sql><execution_time>7.1759131969884E-7</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.4248133681</datetime><fields>0</fields><records>0</records><rows_affected>0</rows_affected><sql>CREATE TABLE uses(
+  id int PRIMARY key,  
+  NAME varchar(20),  
+  rid int REFERENCES role(id)
+)</sql><execution_time>7.17598595656455E-7</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.4248435764</datetime><fields>0</fields><records>0</records><rows_affected>0</rows_affected><sql>ALTER TABLE uses
+ADD CONSTRAINT fk_user_role
+FOREIGN KEY (rid) REFERENCES role(id)</sql><info>Records: 0  Duplicates: 0  Warnings: 0</info><execution_time>1.63193908520043E-6</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.4248710648</datetime><fields>0</fields><records>0</records><rows_affected>1</rows_affected><sql>INSERT INTO role VALUES (1,'admin')</sql><execution_time>1.85187673196197E-7</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.4248972801</datetime><fields>0</fields><records>0</records><rows_affected>1</rows_affected><sql>INSERT INTO uses VALUES(1,'admin',1)</sql><execution_time>0</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.4254501157</datetime><fields>0</fields><records>0</records><rows_affected>0</rows_affected><sql>CREATE TABLE role(
+ id  int PRIMARY key, 
+ NAME varchar(20)
+)</sql><execution_time>5.4397969506681E-7</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.4254736227</datetime><fields>0</fields><records>0</records><rows_affected>0</rows_affected><sql>CREATE TABLE uses(
+  id int PRIMARY key,  
+  NAME varchar(20),  
+  rid int REFERENCES role(id)
+)</sql><execution_time>5.32403646502644E-7</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.4254971412</datetime><fields>0</fields><records>0</records><rows_affected>0</rows_affected><sql>ALTER TABLE uses
+ADD CONSTRAINT fk_user_role
+FOREIGN KEY (rid) REFERENCES role(id)</sql><info>Records: 0  Duplicates: 0  Warnings: 0</info><execution_time>1.27314706332982E-6</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.4255157639</datetime><fields>0</fields><records>0</records><rows_affected>1</rows_affected><sql>INSERT INTO role VALUES (1,'admin')</sql><execution_time>1.85187673196197E-7</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.4255390972</datetime><fields>0</fields><records>0</records><rows_affected>1</rows_affected><sql>INSERT INTO uses VALUES(1,'admin',1)</sql><execution_time>1.85187673196197E-7</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.4284908449</datetime><fields>0</fields><records>0</records><rows_affected>0</rows_affected><sql>CREATE TABLE role(
+ id  int PRIMARY key, 
+ NAME varchar(20)
+)</sql><execution_time>5.32410922460258E-7</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.4285127315</datetime><fields>0</fields><records>0</records><rows_affected>0</rows_affected><sql>CREATE TABLE uses(
+  id int PRIMARY key,  
+  NAME varchar(20),  
+  rid int REFERENCES role(id)
+)</sql><execution_time>5.4397969506681E-7</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.4285358796</datetime><fields>0</fields><records>0</records><rows_affected>0</rows_affected><sql>ALTER TABLE uses
+ADD CONSTRAINT fk_user_role
+FOREIGN KEY (rid) REFERENCES role(id)</sql><info>Records: 0  Duplicates: 0  Warnings: 0</info><execution_time>1.44675868796185E-6</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.4285516088</datetime><fields>0</fields><records>0</records><rows_affected>1</rows_affected><sql>INSERT INTO role VALUES (1,'admin')</sql><execution_time>1.73611624632031E-7</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.4285702431</datetime><fields>0</fields><records>0</records><rows_affected>1</rows_affected><sql>INSERT INTO uses VALUES(1,'admin',1)</sql><execution_time>1.85187673196197E-7</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.4292589005</datetime><fields>0</fields><records>0</records><rows_affected>0</rows_affected><sql>CREATE TABLE role(
+ id  int PRIMARY key, 
+ NAME varchar(20)
+)</sql><execution_time>5.43986971024424E-7</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.4292809606</datetime><fields>0</fields><records>0</records><rows_affected>0</rows_affected><sql>CREATE TABLE uses(
+  id int PRIMARY key,  
+  NAME varchar(20),  
+  rid int REFERENCES role(id)
+)</sql><execution_time>3.58792021870613E-7</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.4293556481</datetime><fields>0</fields><records>0</records><rows_affected>0</rows_affected><sql>ALTER TABLE uses
+ADD CONSTRAINT fk_user_role
+FOREIGN KEY (rid) REFERENCES role(id)</sql><info>Records: 0  Duplicates: 0  Warnings: 0</info><execution_time>1.62037031259388E-6</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.429430706</datetime><fields>0</fields><records>0</records><rows_affected>1</rows_affected><sql>INSERT INTO role VALUES (1,'admin')</sql><execution_time>3.70368070434779E-7</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.4294509606</datetime><fields>0</fields><records>0</records><rows_affected>1</rows_affected><sql>INSERT INTO uses VALUES(1,'admin',1)</sql><execution_time>1.85180397238582E-7</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.4304313194</datetime><fields>0</fields><records>0</records><rows_affected>0</rows_affected><sql>CREATE TABLE role(
+ id  int PRIMARY key, 
+ NAME varchar(20)
+)</sql><execution_time>5.4397969506681E-7</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.4304606134</datetime><fields>0</fields><records>0</records><rows_affected>0</rows_affected><sql>CREATE TABLE uses(
+  id int PRIMARY key,  
+  NAME varchar(20),  
+  rid int REFERENCES role(id)
+)</sql><execution_time>7.1759131969884E-7</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.4304821296</datetime><fields>0</fields><records>0</records><rows_affected>0</rows_affected><sql>ALTER TABLE uses
+ADD CONSTRAINT fk_user_role
+FOREIGN KEY (rid) REFERENCES role(id)</sql><info>Records: 0  Duplicates: 0  Warnings: 0</info><execution_time>1.26157829072326E-6</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.4305913657</datetime><fields>0</fields><records>0</records><rows_affected>1</rows_affected><sql>INSERT INTO role VALUES (1,'admin')</sql><execution_time>1.85187673196197E-7</execution_time></sql><sql type="statement"><database>test</database><datetime>41037.4306105324</datetime><fields>0</fields><records>0</records><rows_affected>1</rows_affected><sql>INSERT INTO uses VALUES(1,'admin',1)</sql><execution_time>1.73611624632031E-7</execution_time></sql><sql type="statement"><database>mybookshop</database><datetime>40320.373102037</datetime><fields>0</fields><records>0</records><rows_affected>9</rows_affected><sql>ALTER TABLE users
+ADD CONSTRAINT fk_user_userrole FOREIGN KEY (userroleid) REFERENCES userroles(ID)</sql><info>Records: 9  Duplicates: 0  Warnings: 0</info><execution_time>1.85180397238582E-7</execution_time></sql><sql type="statement"><database>mybookshop</database><datetime>40320.3736686227</datetime><fields>0</fields><records>0</records><rows_affected>9</rows_affected><sql>ALTER TABLE users
+ADD CONSTRAINT fk_user_userrole FOREIGN KEY (userroleid) REFERENCES userroles(ID)</sql><info>Records: 9  Duplicates: 0  Warnings: 0</info><execution_time>0</execution_time></sql><sql type="statement"><database>test</database><datetime>40320.3740086111</datetime><fields>0</fields><records>0</records><rows_affected>9</rows_affected><sql>ALTER TABLE users
+ADD CONSTRAINT fk_user_userstate FOREIGN KEY (userstateid) REFERENCES userstates(ID)</sql><info>Records: 9  Duplicates: 0  Warnings: 0</info><execution_time>3.70368070434779E-7</execution_time></sql><sql type="statement"><database>mybookshop2</database><datetime>40320.3773303704</datetime><fields>0</fields><records>0</records><rows_affected>9</rows_affected><sql>ALTER TABLE users
+ADD CONSTRAINT fk_user_userrole FOREIGN KEY (userroleid) REFERENCES userroles(ID)</sql><info>Records: 9  Duplicates: 0  Warnings: 0</info><execution_time>1.85187673196197E-7</execution_time></sql><sql type="statement"><database>mybookshop2</database><datetime>40320.3783577431</datetime><fields>0</fields><records>0</records><rows_affected>9</rows_affected><sql>ALTER TABLE users
+ADD CONSTRAINT fk_user_userrole FOREIGN KEY (userroleid) REFERENCES userroles(ID)</sql><info>Records: 9  Duplicates: 0  Warnings: 0</info><execution_time>0</execution_time></sql><sql type="statement"><database>mybookshop2</database><datetime>40320.3783921065</datetime><fields>0</fields><records>0</records><rows_affected>9</rows_affected><sql>ALTER TABLE users
+ADD CONSTRAINT fk_user_userstate FOREIGN KEY (userstateid) REFERENCES userstates(ID)</sql><info>Records: 9  Duplicates: 0  Warnings: 0</info><execution_time>1.85187673196197E-7</execution_time></sql><sql type="statement"><database>mybookshop</database><datetime>40320.379710463</datetime><fields>0</fields><records>0</records><rows_affected>9</rows_affected><sql>ALTER TABLE users
+ADD CONSTRAINT fk_user_userrole FOREIGN KEY (userroleid) REFERENCES userroles(ID)</sql><info>Records: 9  Duplicates: 0  Warnings: 0</info><execution_time>3.58799297828227E-7</execution_time></sql><sql type="statement"><database>mybookshop</database><datetime>40320.3797365046</datetime><fields>0</fields><records>0</records><rows_affected>9</rows_affected><sql>ALTER TABLE users
+ADD CONSTRAINT fk_user_userstate FOREIGN KEY (userstateid) REFERENCES userstates(ID)</sql><info>Records: 9  Duplicates: 0  Warnings: 0</info><execution_time>1.85180397238582E-7</execution_time></sql><sql type="statement"><database>mybookshop</database><datetime>40320.3801544329</datetime><fields>0</fields><records>0</records><rows_affected>969</rows_affected><sql>ALTER TABLE books
+ADD CONSTRAINT fk_book_cate FOREIGN KEY (categoryid) REFERENCES categories(ID)</sql><info>Records: 969  Duplicates: 0  Warnings: 0</info><execution_time>4.8726869863458E-6</execution_time></sql><sql type="statement"><database>mybookshop</database><datetime>40320.3804953357</datetime><fields>0</fields><records>0</records><rows_affected>969</rows_affected><sql>ALTER TABLE books
+ADD CONSTRAINT fk_book_publishers FOREIGN KEY (publisherid) REFERENCES publishers(ID)</sql><info>Records: 969  Duplicates: 0  Warnings: 0</info><execution_time>4.34028333984315E-6</execution_time></sql></history>

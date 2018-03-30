@@ -1,0 +1,52 @@
+/*
+SQLyog Ultimate v11.11 (32 bit)
+MySQL - 5.1.40-community : Database - users
+*********************************************************************
+*/
+
+/*!40101 SET NAMES utf8 */;
+
+/*!40101 SET SQL_MODE=''*/;
+
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`users` /*!40100 DEFAULT CHARACTER SET utf8 */;
+
+USE `users`;
+
+/*Table structure for table `emps` */
+
+DROP TABLE IF EXISTS `emps`;
+
+CREATE TABLE `emps` (
+  `id` varchar(40) NOT NULL,
+  `username` varchar(10) NOT NULL,
+  `salary` double(6,2) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `emps` */
+
+insert  into `emps`(`id`,`username`,`salary`) values ('04cf2e53-f16c-4004-be01-66d6d27862e4','哈哈',5000.00),('10dd145b-1da8-4e16-bb1d-d8244e806d65','哈哈',5000.00),('3cd32eec-def5-45d9-8c8a-eaeb43a3cfa2','哈哈',5000.00),('feddf665-d3c1-49a5-bbbc-125ee7b612e3','哈哈',5000.00);
+
+/*Table structure for table `user` */
+
+DROP TABLE IF EXISTS `user`;
+
+CREATE TABLE `user` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `username` varchar(50) DEFAULT NULL,
+  `password` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+/*Data for the table `user` */
+
+insert  into `user`(`id`,`username`,`password`) values (1,'1111111111','2222222222222');
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;

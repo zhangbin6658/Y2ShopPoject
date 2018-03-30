@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mast.shop.dao.customer.CartDao">
+	<insert id="save" parameterType="Cart">
+		insert into cart(customerid,productid,carttime,cartcount,productprice,orderprice) 
+				  values(#{customerId},#{productId},#{cartTime},#{cartCount},#{productPrice},#{orderPrice})
+	</insert>
+	<!-- ,SUM(c.orderprice) as sumprice,SUM(c.cartcount) AS sumcount -->
+	<select id="listCart" resultType="Cart">
+		SELECT c.cartid,p.productid,p.productimage AS pimage,p.productprice AS price, p.productintroduction AS pintr,c.cartcount,c.orderprice  FROM   cart c
+		INNER JOIN product p ON p.productid=c.productid 
+		WHERE c.customerid=#{customerId}
+	</select>
+	
+	<select id="findById" resultType="Cart">
+		SELECT c.cartid,p.productid,p.productimage AS pimage,p.productprice AS price, p.productintroduction AS pintr,c.cartcount,c.orderprice  FROM   cart c
+		INNER JOIN product p ON p.productid=c.productid 
+		WHERE c.productid=#{pid}
+	</select>
+	
+	<delete id = "deleteCart" >
+		delete from cart where cartid=#{cartId}
+	</delete>
+	
+	<delete id = "deleteCartByCid" >
+		delete from cart where customerid=#{customerId}
+	</delete>
+	
+	<update id = "updateCart" parameterType="Cart">
+		update 	cart 
+		<set>
+				<if test="cartCount!=null and cartCount !=''">
+				 cartcount=#{cartCount}, 
+				</if>
+				<if test="orderPrice!=null and orderPrice !=''">
+				 orderprice=#{orderPrice} 
+				</if>
+		</set>
+			where productid=#{productId}
+	</update>
+	
+	<update id = "updateBatch" parameterType="java.util.List" >
+		<foreach collection="list" item="cart" separator=";">
+			update 	cart 
+				<set>
+					<if test="cart.cartCount!=null and cart.cartCount !=''">
+					 cartcount=#{cart.cartCount}, 
+					</if>
+					<if test="cart.orderPrice!=null and cart.orderPrice !=''">
+					 orderprice=#{cart.orderPrice},
+					</if>
+				</set>
+			where productid=#{cart.productId}
+		</foreach>
+	</update>
+	
+</mapper>

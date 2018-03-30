@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mast.shop.dao.customer.OrderDao">
+	<!-- 根据客户Id和订单状态查寻订单编号 -->
+	<select id="findOrderByCustomerIdAndTypeName" resultType="java.lang.String">
+		SELECT  DISTINCT o.ordercode FROM orderlist AS o INNER JOIN dictionarytype AS d ON o.orderstate = d.typecodeid
+		<trim prefix="where" prefixOverrides="and | or">
+			<if test="customerId !=null">o.customerid=#{customerId}</if>
+			<if test="typeName !=null and typeName !=''">and d.typename=#{typeName}</if>
+			and o.orderclook='是'
+		</trim>
+		limit #{pageIndex},#{pageSize}
+	</select>
+	<select id = "count" resultType="int">
+		SELECT  COUNT(DISTINCT (o.ordercode)) FROM orderlist AS o INNER JOIN dictionarytype AS d ON o.orderstate = d.typecodeid
+		<trim prefix="where" prefixOverrides="and | or">
+			<if test="customerId !=null">o.customerid=#{customerId}</if>
+			<if test="typeName !=null and typeName !=''">and d.typename=#{typeName}</if>
+			and o.orderclook='是'
+		</trim>
+	</select>
+	<select id="findOrderByCustomerId" resultType="Order">
+			SELECT o.*,p.productname as productName,p.productprice as productPrice,p.producttitle,p.productimage as productImage,d.typename,c.phone as phone,c.nickname as nickName FROM orderlist AS o 
+			INNER JOIN product AS p ON o.productid = p.productid
+			INNER JOIN customer AS c ON o.customerid = c.customerid 
+			INNER JOIN dictionarytype AS d ON o.orderstate = d.typecodeid AND d.typecodeid=1  AND d.typecode='orderState'
+		<trim prefix="where" prefixOverrides="and | or">
+			<if test="customerId !=null">o.customerid=#{customerId}</if>
+			and o.orderclook='是'
+		</trim>
+	</select>
+	
+	<!-- 根据订单编号查寻下单日期，成交日期和订单总价 -->
+	<select id="findOrderDateAndPriceByOrderCode" resultType="OrderItem">
+		SELECT o.ordercode,SUM(o.orderprice) AS ordermoney,o.orderdate,o.orderdate,d.typename,d.typecodeid,d.typecode FROM orderlist AS o 
+		INNER JOIN dictionarytype AS d ON o.orderstate = d.typecodeid and d.typecode='orderState'
+		<trim prefix="where" prefixOverrides="and | or" >
+			 <if test="orderCode != null and orderCode !=''">and ordercode=#{orderCode}</if>
+			 and o.orderclook='是'
+		</trim>
+	</select>
+	
+	<!-- 订单信息查询 -->
+	<select id="findOrderByOrderCode" resultType="Order" >
+		select o.*,p.productname,p.productprice,p.producttitle,p.productimage,a.addressname,a.addresssignname,d.typename from orderlist as o 
+			inner join product as p on o.productid = p.productid 
+			inner join address as a on o.addressid = a.addressid
+			inner join dictionarytype as d on o.orderstate = d.typecodeid and d.typecode='orderState'
+			<trim prefix="where" prefixOverrides="and | or" >
+			 <if test="orderCode != null and orderCode !=''">and o.ordercode=#{orderCode}</if>
+			 and o.orderclook='是'
+			</trim>
+	</select>
+	
+	<select id="findDictionarytypeByTypeName" resultType="int">
+		SELECT d.typecodeid FROM dictionarytype d WHERE d.typename=#{typeName}
+	</select>
+	
+	<!-- 修改订单 -->
+	<update id="updateOrderByOrderCode" parameterType="Order">
+		UPDATE orderlist o 
+		<trim prefix="set" suffixOverrides="," suffix="where o.ordercode=#{orderCode} AND o.customerid=#{customerId} AND o.orderclook='是'">
+			<if test="orderState !=null and orderState !=''">o.orderstate=#{orderState},</if>
+			<if test="ordercLook !=null and ordercLook !=''">o.orderclook=#{ordercLook}</if>
+			<if test="orderPrice !=null and orderPrice !=''">orderprice=#{orderPrice}</if>
+		</trim>
+	</update>
+	
+	<update id="updateOrderState" parameterType="Order">
+		UPDATE orderlist o 
+		<trim prefix="set" suffixOverrides="," suffix="where o.orderid=#{orderId} ">
+			<if test="orderState !=null and orderState !=''">o.orderstate=#{orderState},</if>
+			<if test="orderState ==4">o.logisticcode=3915219145685,</if>
+			<if test="orderState ==4">o.ordersendtype=4</if>
+		</trim>
+	</update>
+	
+	
+	<!-- <insert id="save" parameterType="java.util.List">
+		insert into orderlist
+		(customerid ,productid ,ordercode ,addressid ,orderdate ,ordercount ,orderreceiptid , orderprice, ordersenddate, orderpayment, ordersendtype, ordersendprice, orderstate,orderblook,orderclook) 
+		values
+		<foreach collection="list" item="order" index="index" separator=",">
+			(#{order.customerId},#{order.productId},#{order.orderCode},#{order.orderAddress},#{order.orderDate},#{order.orderCount},#{order.orderReceiptId},#{order.orderPrice},#{order.orderSendDate},#{order.orderPayment},#{order.orderSendType},#{order.orderSendPrice},#{order.orderState},#{item.orderbLook},#{item.ordercLook}) 
+		</foreach>
+	</insert> -->
+	
+	<insert id="save" parameterType="Order">
+		insert into orderlist
+		(customerid ,productid ,ordercode ,addressid ,orderdate ,ordercount ,orderreceiptid , orderprice, ordersenddate, orderpayment, ordersendtype, ordersendprice, orderstate,orderblook,orderclook) 
+		values
+		(#{customerId},#{productId},#{orderCode},#{orderAddress},#{orderDate},#{orderCount},#{orderReceiptId},#{orderPrice},#{orderSendDate},#{orderPayment},#{orderSendType},#{orderSendPrice},#{orderState},#{orderbLook},#{ordercLook}) 
+	</insert>
+	
+	<delete id="delete" parameterType="Integer">
+		delete from orderlist where orderid=#{orderId}
+	</delete>
+	
+	<select id = "find" resultType="Order">
+		select * from orderlist where orderid=#{orderId} 
+	</select>
+	
+	<select id="orderCount"  resultType="int">
+		select count(o.ordercode) from orderlist o,product p where o.productid=p.productid 
+	</select>
+	<select id="orderList"  resultType="Order">
+		select o.*,p.* from orderlist o,product p where o.productid=p.productid 
+		<!-- <if test="orderId!=null and orderId!=''">
+		and o.orderid=#{orderId} 
+		</if> -->
+		limit #{pageIndex},#{pageSize} 
+	</select>
+	
+	<insert id="saveCommentary" parameterType="Commentary">
+		INSERT INTO commentary
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="commentaryTitle !=null and commentaryTitle !=''">commentarytitle,</if>
+			<if test="commentaryContent !=null and commentaryContent !=''">commentarycontent,</if>
+			<if test="commentaryPicture !=null and commentaryPicture !=''">commentarypicture,</if>
+			<if test="customerId !=null and customerId !=''">customerid,</if>
+			<if test="productId !=null and productId !=''">productid,</if>
+			<if test="commentaryTime !=null and commentaryTime !=''">commentarytime</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides="," >
+			<if test="commentaryTitle !=null and commentaryTitle !=''">#{commentaryTitle},</if>
+			<if test="commentaryContent !=null and commentaryContent !=''">#{commentaryContent},</if>
+			<if test="commentaryPicture !=null and commentaryPicture !=''">#{commentaryPicture},</if>
+			<if test="customerId !=null and customerId !=''">#{customerId},</if>
+			<if test="productId !=null and productId !=''">#{productId},</if>
+			<if test="commentaryTime !=null and commentaryTime !=''">#{commentaryTime}</if>
+		</trim>
+	</insert>
+	
+	<select id="findSendTypeByOrderCode" resultType="SendType">
+		SELECT DISTINCT s.sendtypecode,s.sendtypename,o.logisticcode FROM sendtype s 
+		INNER JOIN orderlist o ON s.sendtypeid =o.ordersendtype 
+		WHERE o.ordercode=#{orderCode}
+		
+	</select>
+</mapper>

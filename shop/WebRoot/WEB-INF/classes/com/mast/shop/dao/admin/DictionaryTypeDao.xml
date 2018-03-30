@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mast.shop.dao.admin.DictionaryTypeDao">
+	
+	<select id="findProductCategroy"  resultType="DictionaryType" >
+			 SELECT * FROM dictionarytype WHERE typename !='待付款'  and typename !='待审核' and typecodeid=#{typeCodeId}  
+			 <if test="typeCode !=null and typeCode != ''">
+			 	and typecode  like '%${typeCode}%'  AND typecode!= 'productState' and typecode!= 'orderState';
+			 </if>
+	</select>
+	
+	<select id="getDataDictionaryList" resultType="DictionaryType">
+		select typecode,typename,typecodeid from  dictionarytype
+		<trim prefix="where" prefixOverrides="and | or">
+			<if test="typeCode != null">
+				and typecode = #{typeCode}
+			</if>
+		</trim>
+		<!-- order by creationDate DESC  -->
+	</select>
+	
+</mapper>
